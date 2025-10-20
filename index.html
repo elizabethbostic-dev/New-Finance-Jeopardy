@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Payroll Pathway Jeopardy</title>
+    <title>DeSoto ISD Finance Jeopardy</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900;950&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
@@ -110,7 +110,7 @@
 
     <div class="max-w-7xl mx-auto">
         <div class="flex flex-col sm:flex-row justify-between items-center p-4 mb-6 bg-gray-800 rounded-lg shadow-xl">
-            <h1 class="text-3xl sm:text-4xl font-black text-white mb-2 sm:mb-0">PAYROLL PATHWAY JEOPARDY</h1>
+            <h1 class="text-3xl sm:text-4xl font-black text-white mb-2 sm:mb-0">DeSoto ISD FINANCE JEOPARDY</h1>
             <div class="flex items-center space-x-4">
                 <div id="team1-score-container" 
                     class="p-3 rounded-lg border-2 border-transparent transition duration-300 cursor-pointer bg-gray-700 team-score-active" 
@@ -125,8 +125,8 @@
                     class="p-3 rounded-lg border-2 border-transparent transition duration-300 cursor-pointer" 
                     onclick="setActiveTeam('team2')">
                     <div class="text-lg font-bold text-white flex items-center space-x-2">
-                         <i class="fas fa-clipboard-check text-gray-400"></i>
-                         <span>The Auditors (Key 2)</span>
+                           <i class="fas fa-clipboard-check text-gray-400"></i>
+                           <span>The Auditors (Key 2)</span>
                     </div>
                     <div id="score-team2" class="text-3xl font-bold text-gray-400">$0</div>
                 </div>
@@ -204,7 +204,7 @@
     <div id="fj-modal" class="fixed inset-0 hidden items-center justify-center p-4 modal-overlay">
         <div class="modal-content w-full max-w-4xl p-6 shadow-2xl">
             <h2 class="text-4xl font-black text-center text-yellow-400 mb-6">FINAL JEOPARDY</h2>
-            <p class="text-2xl font-bold text-white text-center mb-6" id="fj-category">Payroll Compliance</p>
+            <p class="text-2xl font-bold text-white text-center mb-6" id="fj-category">Payroll Compliance Audits</p>
             
             <div id="fj-wager-inputs" class="space-y-4">
                 </div>
@@ -246,53 +246,53 @@
         // Game data structured for 5 categories by 5 point levels
         const GAME_DATA = [
             {
-                name: "Time Entry & Verification",
+                name: "Payroll 💸",
                 questions: [
-                    { q: "Which action must be completed before supervisors can approve timecards?", a: "Employee must verify their own hours.", points: 100 },
-                    { q: "What tab must be clicked first to begin the weekly approval process?", a: "The 'Weekly Approval' tab.", points: 200 },
-                    { q: "What day of the week should principals approve and verify timecards?", a: "Wednesday (end of day).", points: 300 },
-                    { q: "What does the 'Total for the Week' on a timecard need to match before it’s accurate?", a: "The 'Scheduled' hours.", points: 400 },
-                    { q: "If a timecard shows a “P” under Final Status, what does that mean?", a: "The card is pending approval — the approver must still review and approve.", points: 500 },
+                    { q: "This approval must take place prior to performing duties that exceed regular hours.", a: "What is **overtime approval**?", points: 100 },
+                    { q: "Name the day of the week that timecards should be approved by the Principal/Budget Owner.", a: "What is **Tuesday**?", points: 200 },
+                    { q: "The primary federal Act that regulates minimum wage rates, overtime pay, and equal pay for employees.", a: "What is the **Fair Labor Standards Act (FLSA)**?", points: 300 },
+                    { q: "The official document required to support payroll costs for personnel whose salaries are paid with federal funds.", a: "What is **time and effort (semi-annual certification)**?", points: 400 },
+                    { q: "What is the primary consequence for an employee if a timecard is not approved by the Tuesday COB deadline?", a: "What is a **payroll processing delay**?", points: 500 },
                 ]
             },
             {
-                name: "Supervisor Responsibilities",
+                name: "Purchasing / AP 🧾",
                 questions: [
-                    { q: "What is the final approval day for weekly timecards?", a: "Tuesday close of business (COB).", points: 100 },
-                    { q: "What must supervisors do before approving a timecard?", a: "Review and verify all entries for accuracy.", points: 200 },
-                    { q: "What happens if a supervisor approves an incorrect timecard?", a: "It triggers a Compliance Hold and delays payroll.", points: 300 },
-                    { q: "What should supervisors check for before finalizing time?", a: "Verify no 'P' (pending) status remains.", points: 400 },
-                    { q: "What is the consequence of missing the Tuesday COB deadline?", a: "Payroll processing delay or manual adjustment request.", points: 500 },
+                    { q: "This document creates a binding commitment with the vendor.", a: "What is a **purchase order**?", points: 100 },
+                    { q: "All DeSoto ISD invoices should be sent to this finance email address.", a: "What is **financeinvoice@desotoisd.org**?", points: 200 },
+                    { q: "The Accounts Payable process that determines whether an invoice can be paid (matching PO, Receiver, and Invoice).", a: "What is **three-way match**?", points: 300 },
+                    { q: "This request must be entered when the standard procurement process is not followed.", a: "What is a **check request**?", points: 400 },
+                    { q: "For an invoice to be processed, this date must be after the purchase order creation date.", a: "What is the **invoice date**?", points: 500 },
                 ]
             },
             {
-                name: "Payroll Processing & Deadlines",
+                name: "Budget 📊",
                 questions: [
-                    { q: "When does Payroll begin processing all approved timecards?", a: "Wednesday morning.", points: 100 },
-                    { q: "What happens if payroll data is submitted late?", a: "It causes a one-cycle delay and potential audit flag.", points: 200 },
-                    { q: "What form must be submitted for off-cycle payroll corrections?", a: "The Payroll Adjustment Request Form.", points: 300 },
-                    { q: "What is the cutoff time for payroll edits?", a: "Tuesday at 4:30 PM.", points: 400 },
-                    { q: "When should staff report direct deposit or address changes?", a: "Before the current pay cycle ends.", points: 500 },
+                    { q: "Revenue for DeSoto ISD comes from these three primary sources.", a: "What is **federal, state, and local**?", points: 100 },
+                    { q: "This code is used to separately identify revenues and expenses for each local, state, and federal program.", a: "What is a **fund code**?", points: 200 },
+                    { q: "This indicator is used as a projection of funds allocated to the campuses and departments.", a: "What is **the budget**?", points: 300 },
+                    { q: "Budget amounts cannot be transferred between fund codes, but with board approval, these codes may be transferred.", a: "What is a **function code**?", points: 400 },
+                    { q: "The calculation method TEA uses for determining school district funding.", a: "What is **average daily attendance (ADA)**?", points: 500 },
                 ]
             },
             {
-                name: "Compliance & Accountability",
+                name: "Grants (Special Revenue) 💰",
                 questions: [
-                    { q: "What federal law governs overtime and timekeeping?", a: "The Fair Labor Standards Act (FLSA).", points: 100 },
-                    { q: "What documentation protects the district during audits?", a: "Timecard records and approval logs.", points: 200 },
-                    { q: "What must happen before an overtime request is valid?", a: "It must receive pre-approval from a supervisor.", points: 300 },
-                    { q: "What happens if a supervisor repeatedly approves incorrect hours?", a: "It may trigger a Payroll Compliance Review.", points: 400 },
-                    { q: "What is a 'Compliance Hold'?", a: "A pause in payroll processing due to missing or inaccurate documentation.", points: 500 },
+                    { q: "This strategic plan document outlines a school’s goals for the academic year and is required for grant funding.", a: "What is a **campus improvement plan (CIP)**?", points: 100 },
+                    { q: "A legal document from TEA that indicates a grant has been awarded and funds may be requested.", a: "What is the **Notice of Grant Award (NOGA)**?", points: 200 },
+                    { q: "This must be completed within 60 days of returning from a conference (like TASBO) to receive a reimbursement.", a: "What is an **expense report**?", points: 300 },
+                    { q: "The federal guide that establishes per diem rates to reimburse employees for lodging and meals.", a: "What is the **GSA (US General Services Administration)**?", points: 400 },
+                    { q: "What is the primary concern when purchasing materials using grant funds?", a: "What is **allowability and alignment to the grant budget**?", points: 500 },
                 ]
             },
             {
-                name: "The Road to PAYDAY (Bonus/Penalty)",
+                name: "Cash Handling / Audit 🔒",
                 questions: [
-                    { q: "You missed the Tuesday COB deadline — SORRY!", a: "Action: Go back 2 spaces. (Deduct 100 points)", points: 100 },
-                    { q: "You verified early — bonus!", a: "Action: Move forward 1 space. (Add 200 points)", points: 200 },
-                    { q: "Supervisor forgot to finalize — Compliance Hold!", a: "Action: Lose 1 turn. (Deduct 300 points)", points: 300 },
-                    { q: "Payroll system down — wait for admin to clear exception.", a: "Action: Skip turn. (Deduct 400 points)", points: 400 },
-                    { q: "Supervisor submitted late corrections — move back 3 spaces.", a: "Action: Deduct 500 points.", points: 500 },
+                    { q: "An acceptable receipt must contain vendor name, date, description, and this final item.", a: "What is the **payment method**?", points: 100 },
+                    { q: "An official financial examination of an organization’s accounts to ensure compliance.", a: "What is an **audit**?", points: 200 },
+                    { q: "The only authorized signer of all contracts and agreements for DeSoto ISD.", a: "Who is **the Superintendent**?", points: 300 },
+                    { q: "This type of asset has a unit cost of **$5,000 or more**.", a: "What is a **capital asset**?", points: 400 },
+                    { q: "What are the two key internal control elements that must be separated for strong accountability over funds?", a: "What are **custody of assets and record keeping**?", points: 500 },
                 ]
             }
         ];
@@ -300,7 +300,7 @@
         // --- Game State ---
         let teamScores = {
             'team1': 0, // The Compilers
-            'team2': 0  // The Auditors
+            'team2': 0  // The Auditors
         };
         let activeTeam = 'team1';
         let currentCard = null;
@@ -376,7 +376,9 @@
 
             const payload = {
                 contents: [{ parts: [{ text: userQuery }] }],
-                systemInstruction: { parts: [{ text: systemPrompt }] },
+                config: {
+                    systemInstruction: systemPrompt
+                }
             };
 
             try {
@@ -407,6 +409,9 @@
             const numCategories = GAME_DATA.length;
             const potentialLocations = [];
             for (let c = 0; c < numCategories; c++) {
+                // Ensure daily doubles aren't placed in the 5th (penalty/bonus) category if applicable
+                if (GAME_DATA[c].name.includes("Bonus/Penalty")) continue; 
+                
                 for (let q = 0; q < MAX_Q_PER_CAT; q++) {
                     potentialLocations.push(`${c}-${q}`);
                 }
@@ -607,288 +612,161 @@
             document.getElementById('answer-reveal').classList.remove('hidden');
             document.getElementById('deep-dive-section').classList.remove('hidden');
             document.getElementById('reveal-btn').classList.add('hidden');
+            document.getElementById('buzzer-container').classList.add('hidden');
             document.getElementById('scoring-btns').classList.remove('hidden');
-            document.getElementById('buzzer-container').classList.add('hidden'); // Ensure buzzers are hidden
-        }
 
-        /**
-         * Function to update the score based on correct/incorrect status.
-         * COMPLETED
-         * @param {string} status 'correct' or 'incorrect'
-         */
-        function updateScore(status) {
-            const points = isDailyDouble ? currentWager : currentCard.points;
-            
-            if (status === 'correct') {
-                teamScores[activeTeam] += points;
-            } else if (status === 'incorrect') {
-                teamScores[activeTeam] -= points;
+            // If it was a Daily Double, the score to add/subtract is the wager
+            if (isDailyDouble) {
+                currentCard.points = currentWager;
             }
-
-            // Mark card as answered
+        }
+        
+        // Function to close the modal and mark the card as answered
+        function closeModal() {
             if (currentCard && currentCard.element) {
                 currentCard.element.classList.add('answered');
-                currentCard.element.textContent = ''; // Clear the points value
-                answeredCardCount++;
+                currentCard.element.textContent = currentCard.q; // Show the clue text on the card
             }
-
-            // Reset Daily Double state
-            isDailyDouble = false;
-            currentWager = 0;
-
-            updateScoreDisplay();
-            closeModal();
-        }
-
-        /**
-         * Function to close the modal and reset state.
-         * COMPLETED
-         */
-        function closeModal() {
             document.getElementById('qa-modal').classList.add('hidden');
             document.getElementById('qa-modal').classList.remove('flex');
-
-            // Reset active team to team 1, unless team 2 is the only one who didn't get to answer.
-            // For simplicity, just reset to team 1 to pick the next clue.
-            if (answeredCardCount < totalCards) {
-                 setActiveTeam('team1'); 
-            }
-           
-            currentCard = null;
+            
+            // Clear Daily Double state
+            isDailyDouble = false;
+            currentWager = 0;
+            answeredCardCount++;
+            
+            // If all cards are answered, show the Final Jeopardy button
+            checkFinalJeopardyReady();
         }
 
-        /**
-         * Checks if all cards have been answered to show Final Jeopardy button.
-         * COMPLETED
-         */
+        // Function to update the score after an answer
+        function updateScore(result) {
+            const points = currentCard.points;
+            
+            // For a normal clue, points is the fixed value. For DD, it's the wager.
+            const scoreChange = result === 'correct' ? points : -points;
+            
+            teamScores[activeTeam] += scoreChange;
+            updateScoreDisplay();
+            
+            // Switch to the other team for the next question (standard Jeopardy rule)
+            setActiveTeam(activeTeam === 'team1' ? 'team2' : 'team1');
+            
+            closeModal();
+        }
+        
+        // Checks if the Final Jeopardy button should be displayed
         function checkFinalJeopardyReady() {
-            const fjBtnContainer = document.getElementById('final-jeopardy-btn-container');
             if (answeredCardCount >= totalCards) {
-                fjBtnContainer.classList.remove('hidden');
-            } else {
-                fjBtnContainer.classList.add('hidden');
+                document.getElementById('final-jeopardy-btn-container').classList.remove('hidden');
             }
         }
+
 
         // --- Final Jeopardy Logic ---
 
-        /**
-         * Starts the Final Jeopardy round by opening the modal and setting up wagers.
-         * COMPLETED
-         */
         function startFinalJeopardy() {
-            document.getElementById('fj-modal').classList.remove('hidden');
-            document.getElementById('fj-modal').classList.add('flex');
+            document.getElementById('qa-modal').classList.add('hidden');
             document.getElementById('game-board').classList.add('hidden');
             document.getElementById('final-jeopardy-btn-container').classList.add('hidden');
+            document.getElementById('fj-modal').classList.remove('hidden');
+            document.getElementById('fj-modal').classList.add('flex');
 
             document.getElementById('fj-category').textContent = FINAL_JEOPARDY_CATEGORY;
-            document.getElementById('fj-clue-display').classList.add('hidden');
+            document.getElementById('fj-clue-text').textContent = "Category is: " + FINAL_JEOPARDY_CATEGORY;
+            document.getElementById('fj-answer-text').textContent = FINAL_JEOPARDY_ANSWER;
+            
+            // Setup Wager Inputs
+            const wagerInputsContainer = document.getElementById('fj-wager-inputs');
+            wagerInputsContainer.innerHTML = '';
+            
+            ['team1', 'team2'].forEach(team => {
+                const maxWager = Math.max(0, teamScores[team]); // Can't wager more than current score
+                const teamName = team === 'team1' ? 'The Compilers' : 'The Auditors';
+                
+                const inputGroup = document.createElement('div');
+                inputGroup.className = 'text-center p-4 bg-gray-800 rounded-lg shadow-inner';
+                inputGroup.innerHTML = `
+                    <p class="text-xl font-bold text-white mb-2">${teamName}'s Wager (Current Score: $${teamScores[team]}):</p>
+                    <input type="number" id="fj-wager-${team}" placeholder="Enter Wager (Max: $${maxWager})" class="p-3 text-2xl text-center bg-gray-700 text-white rounded-lg w-full max-w-xs" min="0" max="${maxWager}" />
+                `;
+                wagerInputsContainer.appendChild(inputGroup);
+            });
+            
+            document.getElementById('fj-reveal-clue-btn').classList.remove('hidden');
             document.getElementById('fj-reveal-answer-btn').classList.add('hidden');
             document.getElementById('fj-calculate-btn').classList.add('hidden');
-            document.getElementById('fj-results').classList.add('hidden');
-
-            createFinalJeopardyWagers();
         }
 
-        /**
-         * Generates the wager input fields for each team.
-         * COMPLETED
-         */
-        function createFinalJeopardyWagers() {
-            const wagerInputsDiv = document.getElementById('fj-wager-inputs');
-            wagerInputsDiv.innerHTML = '';
-            wagerInputsDiv.classList.remove('hidden');
-
-            // Teams must have a positive score to participate in FJ
-            ['team1', 'team2'].forEach(team => {
-                const teamName = team === 'team1' ? 'The Compilers' : 'The Auditors';
-                const currentScore = teamScores[team];
-                
-                // Only show wager if the team has a non-negative score
-                if (currentScore >= 0) {
-                     const maxWager = currentScore;
-                     const wagerBlock = document.createElement('div');
-                     wagerBlock.className = 'p-4 bg-gray-700 rounded-lg shadow';
-                     wagerBlock.innerHTML = `
-                         <p class="text-xl font-bold text-yellow-400 mb-2">${teamName} Wager:</p>
-                         <input type="number" id="fj-wager-${team}" placeholder="Max: $${maxWager}" 
-                                class="p-3 text-2xl text-center bg-gray-800 text-white rounded-lg w-full max-w-md mx-auto block" 
-                                min="0" max="${maxWager}" data-team="${team}" />
-                     `;
-                     wagerInputsDiv.appendChild(wagerBlock);
-                } else {
-                     // Team with negative score automatically gets $0
-                     teamWagers[team] = 0;
-                     const scoreBlock = document.createElement('div');
-                     scoreBlock.className = 'p-4 bg-red-800 rounded-lg shadow text-center text-white text-xl font-bold';
-                     scoreBlock.textContent = `${teamName} cannot wager (Negative Score: $${currentScore})`;
-                     wagerInputsDiv.appendChild(scoreBlock);
-                }
-            });
-
-            // If a team has a non-negative score, keep the reveal button active
-            const hasWagerableTeam = teamScores.team1 >= 0 || teamScores.team2 >= 0;
-            if (!hasWagerableTeam) {
-                 document.getElementById('fj-reveal-clue-btn').classList.add('hidden');
-                 document.getElementById('fj-results').classList.remove('hidden');
-                 document.getElementById('fj-results').innerHTML = '<p>No teams qualified for Final Jeopardy.</p>';
-            }
-        }
-
-        /**
-         * Reveals the Final Jeopardy clue after wagers are hypothetically submitted.
-         * COMPLETED
-         */
         function revealFinalClue() {
-            const wagerInputsDiv = document.getElementById('fj-wager-inputs');
-            const wagerableTeams = ['team1', 'team2'].filter(team => teamScores[team] >= 0);
+            const wager1 = parseInt(document.getElementById('fj-wager-team1').value) || 0;
+            const wager2 = parseInt(document.getElementById('fj-wager-team2').value) || 0;
             
-            // Collect wagers before hiding the inputs
-            let allWagersValid = true;
-            teamWagers = {};
-
-            wagerableTeams.forEach(team => {
-                const wagerInput = document.getElementById(`fj-wager-${team}`);
-                const wager = parseInt(wagerInput.value);
-                const maxWager = teamScores[team];
-
-                if (isNaN(wager) || wager < 0 || wager > maxWager) {
-                    alert(`Invalid wager for ${team === 'team1' ? 'The Compilers' : 'The Auditors'}. Wager must be between $0 and $${maxWager}.`);
-                    allWagersValid = false;
-                    return;
-                }
-                teamWagers[team] = wager;
-            });
+            const max1 = Math.max(0, teamScores.team1);
+            const max2 = Math.max(0, teamScores.team2);
             
-            if (!allWagersValid) return; // Stop if any wager is invalid
+            if (wager1 > max1 || wager2 > max2 || wager1 < 0 || wager2 < 0 || isNaN(wager1) || isNaN(wager2)) {
+                alert("Please enter valid wagers. Wager must be between $0 and your current score.");
+                return;
+            }
 
-            wagerInputsDiv.classList.add('hidden');
-            
+            teamWagers.team1 = wager1;
+            teamWagers.team2 = wager2;
+
+            document.getElementById('fj-wager-inputs').classList.add('hidden');
             document.getElementById('fj-clue-display').classList.remove('hidden');
             document.getElementById('fj-clue-text').textContent = FINAL_JEOPARDY_CLUE;
-            document.getElementById('fj-answer-text').textContent = FINAL_JEOPARDY_ANSWER;
-
+            
             document.getElementById('fj-reveal-clue-btn').classList.add('hidden');
             document.getElementById('fj-reveal-answer-btn').classList.remove('hidden');
         }
 
-        /**
-         * Reveals the Final Jeopardy answer.
-         * COMPLETED
-         */
         function revealFinalAnswer() {
             document.getElementById('fj-answer-reveal').classList.remove('hidden');
             document.getElementById('fj-reveal-answer-btn').classList.add('hidden');
             document.getElementById('fj-calculate-btn').classList.remove('hidden');
-            
-            // This is the point where the host judges the answers and inputs the result
-            const fjResults = document.getElementById('fj-results');
-            fjResults.classList.remove('hidden');
-            fjResults.innerHTML = `
-                <p class="text-xl font-bold text-white mb-4">Final Jeopardy Results (Host Action):</p>
-                <div class="space-y-3">
-                    <div class="p-3 bg-gray-800 rounded-lg flex justify-between items-center">
-                        <span class="text-yellow-400">The Compilers (Current: $${teamScores.team1})</span>
-                        <div class="space-x-2">
-                             <button onclick="applyFinalScore('team1', true)" class="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-full text-lg">Correct</button>
-                             <button onclick="applyFinalScore('team1', false)" class="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-full text-lg">Incorrect</button>
-                        </div>
-                    </div>
-                    <div class="p-3 bg-gray-800 rounded-lg flex justify-between items-center">
-                        <span class="text-yellow-400">The Auditors (Current: $${teamScores.team2})</span>
-                        <div class="space-x-2">
-                             <button onclick="applyFinalScore('team2', true)" class="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-full text-lg">Correct</button>
-                             <button onclick="applyFinalScore('team2', false)" class="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-full text-lg">Incorrect</button>
-                        </div>
-                    </div>
-                </div>
-            `;
-            document.getElementById('fj-calculate-btn').classList.add('hidden'); // Hide calculate until the host is done
-        }
-        
-        // Host function to apply final scores based on their judgment
-        function applyFinalScore(team, isCorrect) {
-            const wager = teamWagers[team];
-            if (wager === undefined) {
-                 // Team didn't qualify or didn't get a wager input (score < 0)
-                 return; 
-            }
-            
-            if (isCorrect) {
-                teamScores[team] += wager;
-            } else {
-                teamScores[team] -= wager;
-            }
-
-            // Remove the buttons to prevent double-scoring
-            const teamBlock = document.getElementById('fj-results').querySelector(`[data-team="${team === 'team1' ? 'The Compilers' : 'The Auditors'}"]`).parentNode.parentNode;
-            teamBlock.querySelector('div.space-x-2').innerHTML = `<span class="text-xl">${isCorrect ? '✅' : '❌'}</span>`;
-            
-            updateScoreDisplay(); // Update main scoreboard immediately
-
-            // Re-enable the calculate button if both teams have been scored (or one didn't qualify)
-            let teamsWithWagers = ['team1', 'team2'].filter(t => teamWagers[t] !== undefined);
-            if (teamsWithWagers.every(t => teamScores[t] !== undefined)) { // Simple check, could be more robust
-                 document.getElementById('fj-calculate-btn').classList.remove('hidden');
-            }
         }
 
-        /**
-         * Calculates the final scores and declares the winner.
-         * COMPLETED
-         */
         function calculateFinalScores() {
-            const fjResults = document.getElementById('fj-results');
-            fjResults.innerHTML = '<h3 class="text-4xl font-black text-white mb-4">FINAL SCOREBOARD</h3>';
+            const resultsContainer = document.getElementById('fj-results');
+            resultsContainer.classList.remove('hidden');
+            resultsContainer.innerHTML = '';
             
-            const finalScore1 = teamScores.team1;
-            const finalScore2 = teamScores.team2;
-            let winnerMessage = '';
-
-            if (finalScore1 > finalScore2) {
-                winnerMessage = `🏆 The Compilers WIN with $${finalScore1}!`;
-            } else if (finalScore2 > finalScore1) {
-                winnerMessage = `🏆 The Auditors WIN with $${finalScore2}!`;
+            // In a live game, the host would ask who was right/wrong here.
+            // For simplicity, we'll prompt the user (host) to input results.
+            
+            const result1 = prompt("Did The Compilers get the Final Jeopardy answer correct? (Type 'Y' or 'N')").toUpperCase();
+            const result2 = prompt("Did The Auditors get the Final Jeopardy answer correct? (Type 'Y' or 'N')").toUpperCase();
+            
+            if (result1 === 'Y') {
+                teamScores.team1 += teamWagers.team1;
             } else {
-                winnerMessage = "It's a TIE! Great game!";
+                teamScores.team1 -= teamWagers.team1;
             }
 
-            fjResults.innerHTML += `
-                <div class="text-2xl mt-4">
-                    <p class="text-yellow-400">The Compilers: <span class="${finalScore1 < 0 ? 'text-red-400' : 'text-green-400'}">$${finalScore1}</span></p>
-                    <p class="text-yellow-400">The Auditors: <span class="${finalScore2 < 0 ? 'text-red-400' : 'text-green-400'}">$${finalScore2}</span></p>
-                </div>
-                <h3 class="text-5xl mt-6 font-black">${winnerMessage}</h3>
+            if (result2 === 'Y') {
+                teamScores.team2 += teamWagers.team2;
+            } else {
+                teamScores.team2 -= teamWagers.team2;
+            }
+            
+            updateScoreDisplay(); // Update the main scoreboard
+
+            resultsContainer.innerHTML = `
+                <p class="text-4xl text-white mb-4 font-black">Final Results</p>
+                <p class="text-2xl font-bold text-white"><span class="text-yellow-400">The Compilers:</span> $${teamScores.team1}</p>
+                <p class="text-2xl font-bold text-white"><span class="text-yellow-400">The Auditors:</span> $${teamScores.team2}</p>
+                <p class="mt-6 text-5xl font-extrabold text-green-400">${teamScores.team1 > teamScores.team2 ? 'THE COMPILERS WIN!' : teamScores.team2 > teamScores.team1 ? 'THE AUDITORS WIN!' : 'IT IS A TIE!'}</p>
+                <button onclick="window.location.reload()" class="bg-gray-500 hover:bg-gray-600 text-white px-6 py-3 text-xl rounded-full font-bold transition duration-150 mt-8">
+                    Play Again
+                </button>
             `;
             
-            document.getElementById('fj-clue-display').classList.add('hidden');
             document.getElementById('fj-calculate-btn').classList.add('hidden');
         }
 
-
-        // --- Keyboard Shortcuts (for faster gameplay) ---
-        document.addEventListener('keydown', function(event) {
-            // Check if the QA Modal is open
-            if (document.getElementById('qa-modal').classList.contains('flex')) {
-                // Key '1' for Team 1 Buzz
-                if (event.key === '1' && !document.getElementById('buzzer-team1').disabled) {
-                    buzzerClicked('team1');
-                }
-                // Key '2' for Team 2 Buzz
-                if (event.key === '2' && !document.getElementById('buzzer-team2').disabled) {
-                    buzzerClicked('team2');
-                }
-                // Key 'R' to Reveal Answer
-                if (event.key.toUpperCase() === 'R' && !document.getElementById('reveal-btn').classList.contains('hidden')) {
-                    showAnswer();
-                }
-            }
-        });
-
-
-        // --- Initialization ---
-        window.onload = initializeBoard;
+        // Initialize the game when the page loads
+        document.addEventListener('DOMContentLoaded', initializeBoard);
     </script>
 </body>
 </html>
