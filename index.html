@@ -6,13 +6,14 @@
     <title>Payroll Pathway Jeopardy</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900;950&display=swap" rel="stylesheet">
-    <!-- Font Awesome for Icons (Buzzer/Lock) -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <style>
+        /* Base styles */
         body {
             font-family: 'Inter', sans-serif;
             background-color: #1a202c; /* Dark Blue/Black background */
         }
+        /* Category Headers */
         .category-header {
             background-color: #0b152d; /* Darker blue */
             color: #fcd34d; /* Yellow */
@@ -29,6 +30,7 @@
             padding: 0.5rem;
             user-select: none;
         }
+        /* Question Cards */
         .card {
             background-color: #0d3b66; /* Deep Jeopardy Blue */
             color: #fcd34d; /* Yellow */
@@ -57,6 +59,7 @@
             box-shadow: none;
             font-size: 1.5rem;
         }
+        /* Daily Double Styling */
         .daily-double {
             background-color: #d97706; /* Orange */
             color: white;
@@ -64,8 +67,9 @@
             box-shadow: 0 0 15px rgba(255, 165, 0, 0.7);
         }
         .daily-double:hover:not(.answered) {
-             background-color: #fb923c;
+            background-color: #fb923c;
         }
+        /* Modal Styles */
         .modal-overlay {
             background-color: rgba(0, 0, 0, 0.95);
             z-index: 50;
@@ -84,6 +88,7 @@
         .reveal-button:hover {
             background-color: #fb923c;
         }
+        /* Scoreboard Active Highlight */
         .team-score-active {
             border: 4px solid #fcd34d !important;
             box-shadow: 0 0 10px rgba(252, 211, 77, 0.8);
@@ -104,25 +109,21 @@
 <body class="min-h-screen p-2 sm:p-6">
 
     <div class="max-w-7xl mx-auto">
-        <!-- Header and Score Board -->
         <div class="flex flex-col sm:flex-row justify-between items-center p-4 mb-6 bg-gray-800 rounded-lg shadow-xl">
             <h1 class="text-3xl sm:text-4xl font-black text-white mb-2 sm:mb-0">PAYROLL PATHWAY JEOPARDY</h1>
-            <!-- TWO TEAM SCORE DISPLAY -->
             <div class="flex items-center space-x-4">
-                <!-- Team 1 Score (Active by default) -->
                 <div id="team1-score-container" 
-                     class="p-3 rounded-lg border-2 border-transparent transition duration-300 cursor-pointer bg-gray-700 team-score-active" 
-                     onclick="setActiveTeam('team1')">
+                    class="p-3 rounded-lg border-2 border-transparent transition duration-300 cursor-pointer bg-gray-700 team-score-active" 
+                    onclick="setActiveTeam('team1')">
                     <div class="text-lg font-bold text-white flex items-center space-x-2">
                         <i class="fas fa-hammer text-yellow-400"></i>
                         <span>The Compilers (Key 1)</span>
                     </div>
                     <div id="score-team1" class="text-3xl font-bold text-green-400">$0</div>
                 </div>
-                <!-- Team 2 Score -->
                 <div id="team2-score-container" 
-                     class="p-3 rounded-lg border-2 border-transparent transition duration-300 cursor-pointer" 
-                     onclick="setActiveTeam('team2')">
+                    class="p-3 rounded-lg border-2 border-transparent transition duration-300 cursor-pointer" 
+                    onclick="setActiveTeam('team2')">
                     <div class="text-lg font-bold text-white flex items-center space-x-2">
                          <i class="fas fa-clipboard-check text-gray-400"></i>
                          <span>The Auditors (Key 2)</span>
@@ -130,15 +131,11 @@
                     <div id="score-team2" class="text-3xl font-bold text-gray-400">$0</div>
                 </div>
             </div>
-            <!-- END TWO TEAM SCORE DISPLAY -->
-        </div>
+            </div>
 
-        <!-- Game Board -->
         <div id="game-board" class="grid grid-cols-5 gap-2 sm:gap-4">
-            <!-- Grid items will be populated by JavaScript -->
-        </div>
+            </div>
         
-        <!-- Final Jeopardy Button -->
         <div id="final-jeopardy-btn-container" class="mt-8 text-center hidden">
             <button onclick="startFinalJeopardy()" class="bg-purple-700 hover:bg-purple-800 text-white px-12 py-5 text-3xl font-black rounded-full shadow-2xl transition duration-150">
                 START FINAL JEOPARDY
@@ -147,7 +144,6 @@
 
     </div>
 
-    <!-- Question/Answer Modal -->
     <div id="qa-modal" class="fixed inset-0 hidden items-center justify-center p-4 modal-overlay">
         <div class="modal-content w-full max-w-4xl p-6 shadow-2xl">
             
@@ -163,31 +159,27 @@
             </div>
 
             <div id="qa-display" class="min-h-[100px] flex items-center justify-center p-4 text-center text-3xl sm:text-4xl font-black text-white border-4 border-white rounded-lg">
-                <!-- Question text goes here -->
-            </div>
+                </div>
             
             <div id="buzzer-container" class="mt-6 flex justify-center space-x-4 hidden">
-                 <button id="buzzer-team1" onclick="buzzerClicked('team1')" class="bg-blue-500 hover:bg-blue-600 text-white px-6 py-3 text-lg rounded-full font-bold transition duration-150"><i class="fas fa-hand-point-up"></i> Compilers (1)</button>
-                 <button id="buzzer-team2" onclick="buzzerClicked('team2')" class="bg-blue-500 hover:bg-blue-600 text-white px-6 py-3 text-lg rounded-full font-bold transition duration-150"><i class="fas fa-hand-point-up"></i> Auditors (2)</button>
+                <button id="buzzer-team1" onclick="buzzerClicked('team1')" class="bg-blue-500 hover:bg-blue-600 text-white px-6 py-3 text-lg rounded-full font-bold transition duration-150"><i class="fas fa-hand-point-up"></i> Compilers (1)</button>
+                <button id="buzzer-team2" onclick="buzzerClicked('team2')" class="bg-blue-500 hover:bg-blue-600 text-white px-6 py-3 text-lg rounded-full font-bold transition duration-150"><i class="fas fa-hand-point-up"></i> Auditors (2)</button>
             </div>
 
 
             <div id="answer-reveal" class="hidden mt-6 text-center">
                 <p class="text-lg font-bold text-yellow-500 mb-2">Answer:</p>
                 <div id="qa-answer" class="text-2xl sm:text-3xl font-semibold text-white p-4 bg-gray-700 rounded-lg">
-                    <!-- Answer text goes here -->
-                </div>
+                    </div>
             </div>
 
-            <!-- Deep Dive Section (Gemini Integration) -->
             <div id="deep-dive-section" class="hidden mt-6 text-center">
                 <button onclick="generateDeepDive()" id="deep-dive-btn" 
                     class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 text-xl rounded-full font-bold transition duration-150">
                     ✨ Compliance Deep Dive ✨
                 </button>
                 <div id="deep-dive-text" class="mt-4 p-4 text-left text-lg text-white bg-gray-700 rounded-lg hidden">
-                    <!-- Deep dive text goes here -->
-                </div>
+                    </div>
             </div>
             
             <div id="action-buttons" class="mt-8 flex justify-center space-x-4">
@@ -209,40 +201,36 @@
         </div>
     </div>
     
-    <!-- Final Jeopardy Modal -->
     <div id="fj-modal" class="fixed inset-0 hidden items-center justify-center p-4 modal-overlay">
         <div class="modal-content w-full max-w-4xl p-6 shadow-2xl">
             <h2 class="text-4xl font-black text-center text-yellow-400 mb-6">FINAL JEOPARDY</h2>
             <p class="text-2xl font-bold text-white text-center mb-6" id="fj-category">Payroll Compliance</p>
             
             <div id="fj-wager-inputs" class="space-y-4">
-                <!-- Wager inputs will be inserted here -->
-            </div>
+                </div>
             
             <div id="fj-clue-display" class="hidden">
-                 <div class="min-h-[100px] flex items-center justify-center p-6 text-center text-4xl font-black text-white border-4 border-white rounded-lg my-8" id="fj-clue-text">
-                    <!-- Final Jeopardy Clue -->
-                 </div>
-                 <div class="text-center text-2xl font-bold text-yellow-500 mb-4 hidden" id="fj-answer-reveal">
+                <div class="min-h-[100px] flex items-center justify-center p-6 text-center text-4xl font-black text-white border-4 border-white rounded-lg my-8" id="fj-clue-text">
+                    </div>
+                <div class="text-center text-2xl font-bold text-yellow-500 mb-4 hidden" id="fj-answer-reveal">
                     Answer: <span id="fj-answer-text" class="text-white"></span>
-                 </div>
+                </div>
             </div>
 
             <div id="fj-buttons" class="mt-8 flex justify-center space-x-4">
-                 <button onclick="revealFinalClue()" id="fj-reveal-clue-btn" class="bg-green-600 hover:bg-green-700 text-white px-8 py-3 text-xl rounded-full font-bold">
+                <button onclick="revealFinalClue()" id="fj-reveal-clue-btn" class="bg-green-600 hover:bg-green-700 text-white px-8 py-3 text-xl rounded-full font-bold">
                     Reveal Final Clue
-                 </button>
-                 <button onclick="revealFinalAnswer()" id="fj-reveal-answer-btn" class="reveal-button px-8 py-3 text-xl rounded-full font-bold hidden">
+                </button>
+                <button onclick="revealFinalAnswer()" id="fj-reveal-answer-btn" class="reveal-button px-8 py-3 text-xl rounded-full font-bold hidden">
                     Reveal Answer
-                 </button>
-                 <button onclick="calculateFinalScores()" id="fj-calculate-btn" class="bg-purple-600 hover:bg-purple-700 text-white px-8 py-3 text-xl rounded-full font-bold hidden">
+                </button>
+                <button onclick="calculateFinalScores()" id="fj-calculate-btn" class="bg-purple-600 hover:bg-purple-700 text-white px-8 py-3 text-xl rounded-full font-bold hidden">
                     Calculate Final Scores
-                 </button>
+                </button>
             </div>
             
             <div id="fj-results" class="mt-6 text-center text-3xl font-black text-white hidden">
-                <!-- Final results will be displayed here -->
-            </div>
+                </div>
         </div>
     </div>
     
@@ -324,7 +312,8 @@
         let teamWagers = {}; // Stores Final Jeopardy wagers
 
         // --- Gemini API Setup ---
-        const GEMINI_API_KEY = "";
+        // NOTE: A valid API key must be inserted here for the Deep Dive feature to work.
+        const GEMINI_API_KEY = ""; 
         const GEMINI_API_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-09-2025:generateContent?key=${GEMINI_API_KEY}`;
         
         /**
@@ -334,6 +323,11 @@
             const MAX_RETRIES = 3;
             let delay = 1000;
             
+            // Check if API key is set
+            if (!GEMINI_API_KEY) {
+                throw new Error("Gemini API key is not configured.");
+            }
+
             for (let i = 0; i < MAX_RETRIES; i++) {
                 try {
                     const response = await fetch(GEMINI_API_URL, {
@@ -399,7 +393,7 @@
 
             } catch (error) {
                 console.error("Gemini API Error:", error);
-                deepDiveContainer.innerHTML = "Error: Could not connect to the deep dive generator. Check your network connection.";
+                deepDiveContainer.innerHTML = "Error: Could not connect to the deep dive generator. (Check API Key and network).";
                 deepDiveContainer.classList.add('text-red-400');
             } finally {
                 deepDiveButton.disabled = false;
@@ -495,25 +489,26 @@
             icon2.classList.remove('text-yellow-400', 'text-gray-400');
             
             // 3. Set score colors (Green/Red/Dim)
-            score1El.classList.add(teamScores.team1 < 0 ? 'text-red-400' : 'text-green-400');
-            score2El.classList.add(teamScores.team2 < 0 ? 'text-red-400' : 'text-green-400');
-
-            // 4. Highlight the active team
+            // Determine active team styling
             if (activeTeam === 'team1') {
                 team1Container.classList.add('team-score-active');
                 icon1.classList.add('text-yellow-400');
                 icon2.classList.add('text-gray-400');
-                score2El.classList.remove('text-red-400', 'text-green-400');
+                // Active team score color
+                score1El.classList.add(teamScores.team1 < 0 ? 'text-red-400' : 'text-green-400');
+                // Inactive team score color
                 score2El.classList.add('text-gray-400');
             } else { // activeTeam === 'team2'
                 team2Container.classList.add('team-score-active');
                 icon2.classList.add('text-yellow-400');
                 icon1.classList.add('text-gray-400');
-                score1El.classList.remove('text-red-400', 'text-green-400');
+                // Active team score color
+                score2El.classList.add(teamScores.team2 < 0 ? 'text-red-400' : 'text-green-400');
+                // Inactive team score color
                 score1El.classList.add('text-gray-400');
             }
             
-            // 5. Check for Final Jeopardy readiness
+            // 4. Check for Final Jeopardy readiness
             checkFinalJeopardyReady();
         }
 
@@ -536,6 +531,14 @@
             document.getElementById('deep-dive-text').innerHTML = '';
             document.getElementById('buzzer-container').classList.add('hidden');
             document.getElementById('wager-section').classList.add('hidden');
+            
+            // Re-enable buzzers
+            document.getElementById('buzzer-team1').disabled = false;
+            document.getElementById('buzzer-team2').disabled = false;
+            document.getElementById('buzzer-team1').classList.add('bg-blue-500');
+            document.getElementById('buzzer-team2').classList.add('bg-blue-500');
+            document.getElementById('buzzer-team1').classList.remove('bg-gray-400');
+            document.getElementById('buzzer-team2').classList.remove('bg-gray-400');
 
             const location = `${catIndex}-${qIndex}`;
             isDailyDouble = dailyDoubleLocations.includes(location);
@@ -544,15 +547,20 @@
 
             if (isDailyDouble) {
                 // DAILY DOUBLE SETUP
-                document.getElementById('qa-points').textContent = `DAILY DOUBLE! Max Wager: $${Math.max(500, Math.abs(teamScores[activeTeam]))}`;
+                // Max wager is the current score or $500, whichever is greater
+                const maxWager = Math.max(500, Math.abs(teamScores[activeTeam]));
+                document.getElementById('qa-points').textContent = `DAILY DOUBLE! Max Wager: $${maxWager}`;
+                document.getElementById('daily-double-wager').value = ''; // Clear previous wager
+                document.getElementById('daily-double-wager').setAttribute('max', maxWager);
                 document.getElementById('qa-display').textContent = 'Please place your wager.';
                 document.getElementById('reveal-btn').classList.add('hidden');
+                document.getElementById('buzzer-container').classList.add('hidden'); // No initial buzz on DD
                 document.getElementById('wager-section').classList.remove('hidden');
             } else {
                 // NORMAL CLUE SETUP
                 document.getElementById('qa-points').textContent = `$${currentCard.points}`;
                 document.getElementById('qa-display').textContent = currentCard.q;
-                document.getElementById('buzzer-container').classList.remove('hidden');
+                document.getElementById('buzzer-container').classList.remove('hidden'); // Enable buzzers for a normal clue
             }
             
             currentCard.element = cardElement; // Store element reference for later marking
@@ -572,13 +580,13 @@
 
             currentWager = wager;
             document.getElementById('qa-points').textContent = `$${currentWager} (Daily Double)`;
-            document.getElementById('qa-display').textContent = currentCard.q;
+            document.getElementById('qa-display').textContent = currentCard.q; // Show the question now
             document.getElementById('wager-section').classList.add('hidden');
-            document.getElementById('buzzer-container').classList.remove('hidden');
+            document.getElementById('buzzer-container').classList.remove('hidden'); // Allow buzzing once clue is shown
             document.getElementById('reveal-btn').classList.remove('hidden');
         }
 
-        // Handles click on buzzer button (or keyboard press)
+        // Handles click on buzzer button
         function buzzerClicked(team) {
             // Lock other team's buzzer
             const otherTeam = team === 'team1' ? 'team2' : 'team1';
@@ -603,7 +611,11 @@
             document.getElementById('buzzer-container').classList.add('hidden'); // Ensure buzzers are hidden
         }
 
-        // Function to update the score and close the modal
+        /**
+         * Function to update the score based on correct/incorrect status.
+         * COMPLETED
+         * @param {string} status 'correct' or 'incorrect'
+         */
         function updateScore(status) {
             const points = isDailyDouble ? currentWager : currentCard.points;
             
@@ -613,11 +625,14 @@
                 teamScores[activeTeam] -= points;
             }
 
-            // Mark the card as answered
-            currentCard.element.classList.add('answered');
-            currentCard.element.textContent = isDailyDouble ? 'DD' : 'X';
-            
-            answeredCardCount++;
+            // Mark card as answered
+            if (currentCard && currentCard.element) {
+                currentCard.element.classList.add('answered');
+                currentCard.element.textContent = ''; // Clear the points value
+                answeredCardCount++;
+            }
+
+            // Reset Daily Double state
             isDailyDouble = false;
             currentWager = 0;
 
@@ -625,170 +640,254 @@
             closeModal();
         }
 
-        // Function to close the modal
+        /**
+         * Function to close the modal and reset state.
+         * COMPLETED
+         */
         function closeModal() {
             document.getElementById('qa-modal').classList.add('hidden');
             document.getElementById('qa-modal').classList.remove('flex');
-            
-            // Reset buzzer buttons
-            document.getElementById('buzzer-team1').disabled = false;
-            document.getElementById('buzzer-team1').classList.remove('bg-gray-400');
-            document.getElementById('buzzer-team1').classList.add('bg-blue-500');
-            document.getElementById('buzzer-team2').disabled = false;
-            document.getElementById('buzzer-team2').classList.remove('bg-gray-400');
-            document.getElementById('buzzer-team2').classList.add('bg-blue-500');
 
-            currentCard = null; // Clear current question
-            checkFinalJeopardyReady();
+            // Reset active team to team 1, unless team 2 is the only one who didn't get to answer.
+            // For simplicity, just reset to team 1 to pick the next clue.
+            if (answeredCardCount < totalCards) {
+                 setActiveTeam('team1'); 
+            }
+           
+            currentCard = null;
         }
-        
-        // --- Final Jeopardy Logic ---
-        
-        // Checks if all cards are answered
+
+        /**
+         * Checks if all cards have been answered to show Final Jeopardy button.
+         * COMPLETED
+         */
         function checkFinalJeopardyReady() {
-            if (answeredCardCount === totalCards) {
-                document.getElementById('final-jeopardy-btn-container').classList.remove('hidden');
+            const fjBtnContainer = document.getElementById('final-jeopardy-btn-container');
+            if (answeredCardCount >= totalCards) {
+                fjBtnContainer.classList.remove('hidden');
             } else {
-                document.getElementById('final-jeopardy-btn-container').classList.add('hidden');
+                fjBtnContainer.classList.add('hidden');
             }
         }
-        
-        // Starts the Final Jeopardy round
+
+        // --- Final Jeopardy Logic ---
+
+        /**
+         * Starts the Final Jeopardy round by opening the modal and setting up wagers.
+         * COMPLETED
+         */
         function startFinalJeopardy() {
-            closeModal();
-            document.getElementById('qa-modal').classList.add('hidden'); // Ensure main modal is gone
             document.getElementById('fj-modal').classList.remove('hidden');
             document.getElementById('fj-modal').classList.add('flex');
+            document.getElementById('game-board').classList.add('hidden');
+            document.getElementById('final-jeopardy-btn-container').classList.add('hidden');
+
             document.getElementById('fj-category').textContent = FINAL_JEOPARDY_CATEGORY;
-            
-            const wagerInputsContainer = document.getElementById('fj-wager-inputs');
-            wagerInputsContainer.innerHTML = '';
-            
-            // Reset FJ display
             document.getElementById('fj-clue-display').classList.add('hidden');
-            document.getElementById('fj-reveal-clue-btn').classList.remove('hidden');
             document.getElementById('fj-reveal-answer-btn').classList.add('hidden');
             document.getElementById('fj-calculate-btn').classList.add('hidden');
             document.getElementById('fj-results').classList.add('hidden');
 
-            // Generate wager inputs for each team
-            ['team1', 'team2'].forEach((teamId, index) => {
-                const teamName = index === 0 ? 'The Compilers' : 'The Auditors';
-                const currentScore = teamScores[teamId];
-                
-                const maxWager = Math.max(0, currentScore); // Can't wager more than current score
-                
-                const div = document.createElement('div');
-                div.className = 'p-4 bg-gray-700 rounded-lg shadow-md flex flex-col sm:flex-row justify-between items-center';
-                div.innerHTML = `
-                    <label for="fj-wager-${teamId}" class="text-xl font-semibold text-white mb-2 sm:mb-0">${teamName} Score: <span class="${currentScore < 0 ? 'text-red-400' : 'text-green-400'}">$${currentScore}</span></label>
-                    <div class="flex flex-col sm:flex-row items-center space-y-2 sm:space-y-0 sm:space-x-4 w-full sm:w-auto">
-                        <span class="text-lg text-yellow-400">Max: $${maxWager}</span>
-                        <input type="number" id="fj-wager-${teamId}" data-max="${maxWager}" placeholder="Enter Wager" 
-                               class="p-2 text-lg text-center bg-gray-600 text-white rounded-lg w-full sm:w-40" min="0" value="0"/>
-                    </div>
-                `;
-                wagerInputsContainer.appendChild(div);
-            });
+            createFinalJeopardyWagers();
         }
-        
-        // Reveals the Final Jeopardy Clue
-        function revealFinalClue() {
-             // 1. Validate and store wagers
-            ['team1', 'team2'].forEach(teamId => {
-                const input = document.getElementById(`fj-wager-${teamId}`);
-                const wager = parseInt(input.value);
-                const maxWager = parseInt(input.dataset.max);
+
+        /**
+         * Generates the wager input fields for each team.
+         * COMPLETED
+         */
+        function createFinalJeopardyWagers() {
+            const wagerInputsDiv = document.getElementById('fj-wager-inputs');
+            wagerInputsDiv.innerHTML = '';
+            wagerInputsDiv.classList.remove('hidden');
+
+            // Teams must have a positive score to participate in FJ
+            ['team1', 'team2'].forEach(team => {
+                const teamName = team === 'team1' ? 'The Compilers' : 'The Auditors';
+                const currentScore = teamScores[team];
                 
-                if (isNaN(wager) || wager < 0 || wager > maxWager) {
-                    // Fail safe: If input is invalid, set wager to 0
-                    teamWagers[teamId] = 0;
+                // Only show wager if the team has a non-negative score
+                if (currentScore >= 0) {
+                     const maxWager = currentScore;
+                     const wagerBlock = document.createElement('div');
+                     wagerBlock.className = 'p-4 bg-gray-700 rounded-lg shadow';
+                     wagerBlock.innerHTML = `
+                         <p class="text-xl font-bold text-yellow-400 mb-2">${teamName} Wager:</p>
+                         <input type="number" id="fj-wager-${team}" placeholder="Max: $${maxWager}" 
+                                class="p-3 text-2xl text-center bg-gray-800 text-white rounded-lg w-full max-w-md mx-auto block" 
+                                min="0" max="${maxWager}" data-team="${team}" />
+                     `;
+                     wagerInputsDiv.appendChild(wagerBlock);
                 } else {
-                    teamWagers[teamId] = wager;
+                     // Team with negative score automatically gets $0
+                     teamWagers[team] = 0;
+                     const scoreBlock = document.createElement('div');
+                     scoreBlock.className = 'p-4 bg-red-800 rounded-lg shadow text-center text-white text-xl font-bold';
+                     scoreBlock.textContent = `${teamName} cannot wager (Negative Score: $${currentScore})`;
+                     wagerInputsDiv.appendChild(scoreBlock);
                 }
-                input.disabled = true;
+            });
+
+            // If a team has a non-negative score, keep the reveal button active
+            const hasWagerableTeam = teamScores.team1 >= 0 || teamScores.team2 >= 0;
+            if (!hasWagerableTeam) {
+                 document.getElementById('fj-reveal-clue-btn').classList.add('hidden');
+                 document.getElementById('fj-results').classList.remove('hidden');
+                 document.getElementById('fj-results').innerHTML = '<p>No teams qualified for Final Jeopardy.</p>';
+            }
+        }
+
+        /**
+         * Reveals the Final Jeopardy clue after wagers are hypothetically submitted.
+         * COMPLETED
+         */
+        function revealFinalClue() {
+            const wagerInputsDiv = document.getElementById('fj-wager-inputs');
+            const wagerableTeams = ['team1', 'team2'].filter(team => teamScores[team] >= 0);
+            
+            // Collect wagers before hiding the inputs
+            let allWagersValid = true;
+            teamWagers = {};
+
+            wagerableTeams.forEach(team => {
+                const wagerInput = document.getElementById(`fj-wager-${team}`);
+                const wager = parseInt(wagerInput.value);
+                const maxWager = teamScores[team];
+
+                if (isNaN(wager) || wager < 0 || wager > maxWager) {
+                    alert(`Invalid wager for ${team === 'team1' ? 'The Compilers' : 'The Auditors'}. Wager must be between $0 and $${maxWager}.`);
+                    allWagersValid = false;
+                    return;
+                }
+                teamWagers[team] = wager;
             });
             
-            document.getElementById('fj-wager-inputs').classList.add('hidden');
+            if (!allWagersValid) return; // Stop if any wager is invalid
+
+            wagerInputsDiv.classList.add('hidden');
+            
             document.getElementById('fj-clue-display').classList.remove('hidden');
             document.getElementById('fj-clue-text').textContent = FINAL_JEOPARDY_CLUE;
+            document.getElementById('fj-answer-text').textContent = FINAL_JEOPARDY_ANSWER;
+
             document.getElementById('fj-reveal-clue-btn').classList.add('hidden');
             document.getElementById('fj-reveal-answer-btn').classList.remove('hidden');
         }
-        
-        // Reveals the Final Jeopardy Answer
+
+        /**
+         * Reveals the Final Jeopardy answer.
+         * COMPLETED
+         */
         function revealFinalAnswer() {
-            document.getElementById('fj-answer-text').textContent = FINAL_JEOPARDY_ANSWER;
             document.getElementById('fj-answer-reveal').classList.remove('hidden');
             document.getElementById('fj-reveal-answer-btn').classList.add('hidden');
             document.getElementById('fj-calculate-btn').classList.remove('hidden');
+            
+            // This is the point where the host judges the answers and inputs the result
+            const fjResults = document.getElementById('fj-results');
+            fjResults.classList.remove('hidden');
+            fjResults.innerHTML = `
+                <p class="text-xl font-bold text-white mb-4">Final Jeopardy Results (Host Action):</p>
+                <div class="space-y-3">
+                    <div class="p-3 bg-gray-800 rounded-lg flex justify-between items-center">
+                        <span class="text-yellow-400">The Compilers (Current: $${teamScores.team1})</span>
+                        <div class="space-x-2">
+                             <button onclick="applyFinalScore('team1', true)" class="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-full text-lg">Correct</button>
+                             <button onclick="applyFinalScore('team1', false)" class="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-full text-lg">Incorrect</button>
+                        </div>
+                    </div>
+                    <div class="p-3 bg-gray-800 rounded-lg flex justify-between items-center">
+                        <span class="text-yellow-400">The Auditors (Current: $${teamScores.team2})</span>
+                        <div class="space-x-2">
+                             <button onclick="applyFinalScore('team2', true)" class="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-full text-lg">Correct</button>
+                             <button onclick="applyFinalScore('team2', false)" class="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-full text-lg">Incorrect</button>
+                        </div>
+                    </div>
+                </div>
+            `;
+            document.getElementById('fj-calculate-btn').classList.add('hidden'); // Hide calculate until the host is done
         }
         
-        // Calculates and displays final scores
-        function calculateFinalScores() {
-            let finalResults = 'Final Scores:\n';
-            let team1NewScore = teamScores.team1;
-            let team2NewScore = teamScores.team2;
-            
-            // --- Team 1 (The Compilers) Scoring ---
-            // In a real game, you would input "Correct" or "Incorrect" for each team here.
-            // For simplicity, we assume the host determines the status and clicks the button.
-            
-            const team1Correct = confirm("Did The Compilers answer correctly? (OK for Correct / Cancel for Incorrect)");
-            if (team1Correct) {
-                team1NewScore += teamWagers.team1;
-            } else {
-                team1NewScore -= teamWagers.team1;
+        // Host function to apply final scores based on their judgment
+        function applyFinalScore(team, isCorrect) {
+            const wager = teamWagers[team];
+            if (wager === undefined) {
+                 // Team didn't qualify or didn't get a wager input (score < 0)
+                 return; 
             }
             
-            // --- Team 2 (The Auditors) Scoring ---
-            const team2Correct = confirm("Did The Auditors answer correctly? (OK for Correct / Cancel for Incorrect)");
-            if (team2Correct) {
-                team2NewScore += teamWagers.team2;
+            if (isCorrect) {
+                teamScores[team] += wager;
             } else {
-                team2NewScore -= teamWagers.team2;
+                teamScores[team] -= wager;
             }
 
-            teamScores.team1 = team1NewScore;
-            teamScores.team2 = team2NewScore;
+            // Remove the buttons to prevent double-scoring
+            const teamBlock = document.getElementById('fj-results').querySelector(`[data-team="${team === 'team1' ? 'The Compilers' : 'The Auditors'}"]`).parentNode.parentNode;
+            teamBlock.querySelector('div.space-x-2').innerHTML = `<span class="text-xl">${isCorrect ? '✅' : '❌'}</span>`;
             
-            // Display results
-            finalResults += `The Compilers: $${teamScores.team1}\n`;
-            finalResults += `The Auditors: $${teamScores.team2}\n\n`;
-            
-            let winner = '';
-            if (teamScores.team1 > teamScores.team2) {
-                winner = 'The Compilers WIN!';
-            } else if (teamScores.team2 > teamScores.team1) {
-                winner = 'The Auditors WIN!';
-            } else {
-                winner = 'It\'s a TIE!';
+            updateScoreDisplay(); // Update main scoreboard immediately
+
+            // Re-enable the calculate button if both teams have been scored (or one didn't qualify)
+            let teamsWithWagers = ['team1', 'team2'].filter(t => teamWagers[t] !== undefined);
+            if (teamsWithWagers.every(t => teamScores[t] !== undefined)) { // Simple check, could be more robust
+                 document.getElementById('fj-calculate-btn').classList.remove('hidden');
             }
-            finalResults += winner;
-            
-            document.getElementById('fj-results').innerHTML = finalResults.replace(/\n/g, '<br>');
-            document.getElementById('fj-results').classList.remove('hidden');
-            document.getElementById('fj-calculate-btn').disabled = true;
-            
-            updateScoreDisplay(); // Update top score board
         }
-        
-        // --- Event Listeners (Buzzer) ---
+
+        /**
+         * Calculates the final scores and declares the winner.
+         * COMPLETED
+         */
+        function calculateFinalScores() {
+            const fjResults = document.getElementById('fj-results');
+            fjResults.innerHTML = '<h3 class="text-4xl font-black text-white mb-4">FINAL SCOREBOARD</h3>';
+            
+            const finalScore1 = teamScores.team1;
+            const finalScore2 = teamScores.team2;
+            let winnerMessage = '';
+
+            if (finalScore1 > finalScore2) {
+                winnerMessage = `🏆 The Compilers WIN with $${finalScore1}!`;
+            } else if (finalScore2 > finalScore1) {
+                winnerMessage = `🏆 The Auditors WIN with $${finalScore2}!`;
+            } else {
+                winnerMessage = "It's a TIE! Great game!";
+            }
+
+            fjResults.innerHTML += `
+                <div class="text-2xl mt-4">
+                    <p class="text-yellow-400">The Compilers: <span class="${finalScore1 < 0 ? 'text-red-400' : 'text-green-400'}">$${finalScore1}</span></p>
+                    <p class="text-yellow-400">The Auditors: <span class="${finalScore2 < 0 ? 'text-red-400' : 'text-green-400'}">$${finalScore2}</span></p>
+                </div>
+                <h3 class="text-5xl mt-6 font-black">${winnerMessage}</h3>
+            `;
+            
+            document.getElementById('fj-clue-display').classList.add('hidden');
+            document.getElementById('fj-calculate-btn').classList.add('hidden');
+        }
+
+
+        // --- Keyboard Shortcuts (for faster gameplay) ---
         document.addEventListener('keydown', function(event) {
-            // Only allow buzzing if the main modal is open and the buzzer container is visible
-            if (document.getElementById('qa-modal').classList.contains('flex') && 
-                !document.getElementById('buzzer-container').classList.contains('hidden') &&
-                !isDailyDouble) {
-                
+            // Check if the QA Modal is open
+            if (document.getElementById('qa-modal').classList.contains('flex')) {
+                // Key '1' for Team 1 Buzz
                 if (event.key === '1' && !document.getElementById('buzzer-team1').disabled) {
                     buzzerClicked('team1');
-                } else if (event.key === '2' && !document.getElementById('buzzer-team2').disabled) {
+                }
+                // Key '2' for Team 2 Buzz
+                if (event.key === '2' && !document.getElementById('buzzer-team2').disabled) {
                     buzzerClicked('team2');
+                }
+                // Key 'R' to Reveal Answer
+                if (event.key.toUpperCase() === 'R' && !document.getElementById('reveal-btn').classList.contains('hidden')) {
+                    showAnswer();
                 }
             }
         });
 
-        // Initialize the board on window load
+
+        // --- Initialization ---
         window.onload = initializeBoard;
     </script>
 </body>
